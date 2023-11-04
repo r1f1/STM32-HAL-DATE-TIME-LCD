@@ -124,7 +124,7 @@ char *time_to_string(RTC_time_t *rtc_time){
  *
  * @param[in]  rtc_date					- Date handler.
  *
- * @return     char*					- Returned string in this format: dd/mm/20yy.
+ * @return     char*					- Returned string in this format: dd/mm/yyyy.
  */
 
 //
