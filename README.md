@@ -2,11 +2,12 @@
 
 ## Overview
 
-The purpose of this project is to display the date and the time on the LCD screen which was previously introduced by the user. To achieve this goal it was use a general 4x4 matrix keypad to introduce the data; the RTC DS1307 to set the date and time via the I2C bus; and to display the different parameters it was use the HD44780 controller along with the PCF8574 I2C I/O expander.
 
-Before begin with this project it was necessary to develop the drivers for each component, which you can find them in my other repositories.
+The purpose of this project is to display the date and time on the LCD screen, as previously introduced by the user. To achieve this goal, we used a general 4x4 matrix keypad to input the data, the RTC DS1307 to set the date and time via the I2C bus, and the HD44780 controller along with the PCF8574 I2C I/O expander to display the different parameters.
 
-In this application every time the MCU is powered on, the program will ask for the current date and time. Once this is done it will display the data on the LCD screen updating the time every second. It is also provided an extra button if at some point the user wants to change the values again.
+Before beginning this project, it was necessary to develop the drivers for each component, which you can find in my other repositories.
+
+In this application, every time the MCU is powered on, the program will prompt for the date and time. Once this is done, it will display the data on the LCD screen, updating the time every second. An additional button is provided if the user wants to change the values at any point.
 
 This project was tested on the [STM32DISCOVERY](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) board.
 
