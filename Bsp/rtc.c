@@ -24,16 +24,12 @@ static uint8_t binary_to_bcd(uint8_t);
 //************************************** Function definitions **************************************//
 
 
-/*************************************************************************************
- * @fn									- rtc_init
- *
- * @brief								- This function initialise the DS1307 module by setting the clock halt (CH) bit to 0.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  I2C_Handle				- I2C handler.
- *
- * @returns	   uint8_t					- If the clock halt (CH) bit returns 1 the module is disable, if it returns 0 is enable.
+/**
+ * @fn uint8_t rtc_init(RTC_HandleTypeDef*, I2C_HandleTypeDef*)
+ * @brief This function initialise the DS1307 module by setting the clock halt (CH) bit to 0.
+ * @param rtc RTC handler
+ * @param I2C_Handle I2C handler.
+ * @return uint8_t If the clock halt (CH) bit returns 1 the module is disable, if it returns 0 is enable.
  */
 
 uint8_t rtc_init(RTC_HandleTypeDef *rtc, I2C_HandleTypeDef *I2C_Handle)
@@ -52,17 +48,15 @@ uint8_t rtc_init(RTC_HandleTypeDef *rtc, I2C_HandleTypeDef *I2C_Handle)
 
 }
 
-/*************************************************************************************
- * @fn									- rtc_set_current_time
- *
- * @brief								- This function set the time introduced by the user differentiating between the 12 and 24 hours format.
- *										- Each parameter have their own address and they are set in BCD format.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  rtc_time					- Time handler.
- */
 
+
+/**
+ * @fn void rtc_set_current_time(RTC_HandleTypeDef*, RTC_time_t*)
+ * @brief This function set the time introduced by the user differentiating between the 12 and 24 hours format.
+ * @brief Each parameter have their own address and they are set in BCD format.
+ * @param rtc RTC handler.
+ * @param rtc_time Time handler.
+ */
 void rtc_set_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 {
 
@@ -88,15 +82,12 @@ void rtc_set_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 
 }
 
-/*************************************************************************************
- * @fn									- rtc_set_current_date
- *
- * @brief								- This function set the date introduced by the user.
- * 										- Each parameter have their own address and they are set in BCD format.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  rtc_date					- Date handler.
+/**
+ * @fn void rtc_set_current_date(RTC_HandleTypeDef*, RTC_date_t*)
+ * @brief This function set the date introduced by the user.
+ * @brief Each parameter have their own address and they are set in BCD format.
+ * @param rtc RTC handler.
+ * @param rtc_date Date handler.
  */
 
 void rtc_set_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
@@ -112,17 +103,13 @@ void rtc_set_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
 
 }
 
-/*************************************************************************************
- * @fn									- rtc_get_current_time
- *
- * @brief								- This function get the current date.
- * 										- The returned values are set back to binary format.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  rtc_time					- Time handler.
+/**
+ * @fn void rtc_get_current_time(RTC_HandleTypeDef*, RTC_time_t*)
+ * @brief This function get the current date.
+ * @brief The returned values are set back to binary format.
+ * @param rtc RTC handler.
+ * @param rtc_time Time handler.
  */
-
 void rtc_get_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 {
 
@@ -147,17 +134,14 @@ void rtc_get_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 	rtc_time->hours = bcd_to_binary(hours);
 }
 
-/*************************************************************************************
- * @fn									- rtc_get_current_date
- *
- * @brief								- This function get the current date.
- * 										- The returned values are set back to binary format.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  rtc_date					- Date handler.
- */
 
+/**
+ * @fn void rtc_get_current_date(RTC_HandleTypeDef*, RTC_date_t*)
+ * @brief This function get the current date.
+ * @brief The returned values are set back to binary format.
+ * @param rtc RTC handler.
+ * @param rtc_date Date handler.
+ */
 void rtc_get_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
 {
 	rtc_date->date =  bcd_to_binary(rtc_read(rtc, RTC_ADDR_DATE));
@@ -167,18 +151,13 @@ void rtc_get_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
 
 }
 
-/*************************************************************************************
- * @fn									- rtc_write
- *
- * @brief								- This function sends a value to the corresponding address.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  value					- Any value within the Time or Date handler.
- *
- * @param[in]  reg_addr					- Address for the Time or Date handler values.
+/**
+ * @fn void rtc_write(RTC_HandleTypeDef*, uint8_t, uint8_t)
+ * @brief This function sends a value to the corresponding address.
+ * @param rtc RTC handler.
+ * @param value Any value within the Time or Date handler.
+ * @param reg_addr Address for the Time or Date handler values.
  */
-
 static void rtc_write(RTC_HandleTypeDef *rtc, uint8_t value, uint8_t reg_addr)
 {
 	uint8_t tx[2];
@@ -187,18 +166,13 @@ static void rtc_write(RTC_HandleTypeDef *rtc, uint8_t value, uint8_t reg_addr)
 	HAL_I2C_Master_Transmit(rtc->I2C_Handle, rtc->I2C_Addr, tx, 2, 100);
 }
 
-/*************************************************************************************
- * @fn									- rtc_read
- *
- * @brief								- This function reads a value from the corresponding address.
- *
- * @param[in]  rtc						- LCD handler.
- *
- * @param[in]  reg_addr					- Address for the Time or Date handler values.
- *
- * @return     uint8_t					- Data returned after sending the corresponding address.
+/**
+ * @fn uint8_t rtc_read(RTC_HandleTypeDef*, uint8_t)
+ * @brief This function reads a value from the corresponding address.
+ * @param rtc RTC handler.
+ * @param reg_addr Address for the Time or Date handler values.
+ * @return uint8_t Data returned after sending the corresponding address.
  */
-
 static uint8_t rtc_read(RTC_HandleTypeDef *rtc, uint8_t reg_addr)
 {
 	uint8_t data;
@@ -208,14 +182,11 @@ static uint8_t rtc_read(RTC_HandleTypeDef *rtc, uint8_t reg_addr)
     return data;
 }
 
-/*************************************************************************************
- * @fn									- binary_to_bcd
- *
- * @brief								- This function converts binary data into its corresponding binary-code decimal format (BCD).
- *
- * @param[in]  value					- Value in binary format.
- *
- * @return     uint8_t					- Data returned in BCD format.
+/**
+ * @fn uint8_t binary_to_bcd(uint8_t)
+ * @brief This function converts binary data into its corresponding binary-code decimal format (BCD).
+ * @param value Value in binary format.
+ * @return uint8_t Data returned in BCD format.
  */
 
 static uint8_t binary_to_bcd(uint8_t value)
@@ -234,16 +205,12 @@ static uint8_t binary_to_bcd(uint8_t value)
 	return bcd;
 }
 
-/*************************************************************************************
- * @fn									- bcd_to_binary
- *
- * @brief								- This function sets back the value to binary format.
- *
- * @param[in]  value					- Value in BCD format.
- *
- * @return     uint8_t					- Data returned in binary format.
+/**
+ * @fn uint8_t bcd_to_binary(uint8_t)
+ * @brief This function sets back the value to binary format.
+ * @param value Value in BCD format.
+ * @return uint8_t Data returned in binary format.
  */
-
 static uint8_t bcd_to_binary(uint8_t value)
 {
 	uint8_t m , n;

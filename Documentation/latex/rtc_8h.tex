@@ -1,0 +1,135 @@
+\hypertarget{rtc_8h}{}\doxysection{Bsp/rtc.h File Reference}
+\label{rtc_8h}\index{Bsp/rtc.h@{Bsp/rtc.h}}
+
+
+Functions declarations available to the user for working with the D\+S1307 rtc module.  
+
+
+{\ttfamily \#include \char`\"{}stm32f4xx\+\_\+hal.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Date struct members. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Time struct members. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}}
+\begin{DoxyCompactList}\small\item\em I2C handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc_8h_a0135ef1b936953a6b12bddeb095d18e6}{rtc\+\_\+init}} (\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$, I2\+C\+\_\+\+Handle\+Type\+Def $\ast$)
+\begin{DoxyCompactList}\small\item\em This function initialise the D\+S1307 module by setting the clock halt (CH) bit to 0. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtc_8h_a43bed7cfb0418ee35c038fb204e4f997}{rtc\+\_\+set\+\_\+current\+\_\+time}} (\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$, \mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This function set the time introduced by the user differentiating between the 12 and 24 hours format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtc_8h_ab22ea094876b9d8cc588cf0e314b2c59}{rtc\+\_\+get\+\_\+current\+\_\+time}} (\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$, \mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This function get the current date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtc_8h_a07e7ba037b31ec21f84fee729d8cb7a8}{rtc\+\_\+set\+\_\+current\+\_\+date}} (\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$, \mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This function set the date introduced by the user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtc_8h_a91e3fd8ab7020353512c6f0fa3cbc411}{rtc\+\_\+get\+\_\+current\+\_\+date}} (\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$, \mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This function get the current date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions declarations available to the user for working with the D\+S1307 rtc module. 
+
+\begin{DoxyAuthor}{Author}
+Rafael Hernández Marrero (\href{mailto:rafaelh96@gmail.com}{\texttt{ rafaelh96@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+03/11/2023 12\+:04\+:00 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rtc_8h_a91e3fd8ab7020353512c6f0fa3cbc411}\label{rtc_8h_a91e3fd8ab7020353512c6f0fa3cbc411}} 
+\index{rtc.h@{rtc.h}!rtc\_get\_current\_date@{rtc\_get\_current\_date}}
+\index{rtc\_get\_current\_date@{rtc\_get\_current\_date}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_get\_current\_date()}{rtc\_get\_current\_date()}}
+{\footnotesize\ttfamily void rtc\+\_\+get\+\_\+current\+\_\+date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$}]{rtc,  }\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$}]{rtc\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+This function get the current date. 
+
+The returned values are set back to binary format. 
+\begin{DoxyParams}{Parameters}
+{\em rtc} & R\+TC handler. \\
+\hline
+{\em rtc\+\_\+date} & Date handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtc_8h_ab22ea094876b9d8cc588cf0e314b2c59}\label{rtc_8h_ab22ea094876b9d8cc588cf0e314b2c59}} 
+\index{rtc.h@{rtc.h}!rtc\_get\_current\_time@{rtc\_get\_current\_time}}
+\index{rtc\_get\_current\_time@{rtc\_get\_current\_time}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_get\_current\_time()}{rtc\_get\_current\_time()}}
+{\footnotesize\ttfamily void rtc\+\_\+get\+\_\+current\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$}]{rtc,  }\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$}]{rtc\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+This function get the current date. 
+
+The returned values are set back to binary format. 
+\begin{DoxyParams}{Parameters}
+{\em rtc} & R\+TC handler. \\
+\hline
+{\em rtc\+\_\+time} & Time handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtc_8h_a0135ef1b936953a6b12bddeb095d18e6}\label{rtc_8h_a0135ef1b936953a6b12bddeb095d18e6}} 
+\index{rtc.h@{rtc.h}!rtc\_init@{rtc\_init}}
+\index{rtc\_init@{rtc\_init}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_init()}{rtc\_init()}}
+{\footnotesize\ttfamily uint8\+\_\+t rtc\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$}]{rtc,  }\item[{I2\+C\+\_\+\+Handle\+Type\+Def $\ast$}]{I2\+C\+\_\+\+Handle }\end{DoxyParamCaption})}
+
+
+
+This function initialise the D\+S1307 module by setting the clock halt (CH) bit to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtc} & R\+TC handler \\
+\hline
+{\em I2\+C\+\_\+\+Handle} & I2C handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t If the clock halt (CH) bit returns 1 the module is disable, if it returns 0 is enable. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtc_8h_a07e7ba037b31ec21f84fee729d8cb7a8}\label{rtc_8h_a07e7ba037b31ec21f84fee729d8cb7a8}} 
+\index{rtc.h@{rtc.h}!rtc\_set\_current\_date@{rtc\_set\_current\_date}}
+\index{rtc\_set\_current\_date@{rtc\_set\_current\_date}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_set\_current\_date()}{rtc\_set\_current\_date()}}
+{\footnotesize\ttfamily void rtc\+\_\+set\+\_\+current\+\_\+date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$}]{rtc,  }\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$}]{rtc\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+This function set the date introduced by the user. 
+
+Each parameter have their own address and they are set in B\+CD format. 
+\begin{DoxyParams}{Parameters}
+{\em rtc} & R\+TC handler. \\
+\hline
+{\em rtc\+\_\+date} & Date handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtc_8h_a43bed7cfb0418ee35c038fb204e4f997}\label{rtc_8h_a43bed7cfb0418ee35c038fb204e4f997}} 
+\index{rtc.h@{rtc.h}!rtc\_set\_current\_time@{rtc\_set\_current\_time}}
+\index{rtc\_set\_current\_time@{rtc\_set\_current\_time}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_set\_current\_time()}{rtc\_set\_current\_time()}}
+{\footnotesize\ttfamily void rtc\+\_\+set\+\_\+current\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c___handle_type_def}{R\+T\+C\+\_\+\+Handle\+Type\+Def}} $\ast$}]{rtc,  }\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$}]{rtc\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+This function set the time introduced by the user differentiating between the 12 and 24 hours format. 
+
+Each parameter have their own address and they are set in B\+CD format. 
+\begin{DoxyParams}{Parameters}
+{\em rtc} & R\+TC handler. \\
+\hline
+{\em rtc\+\_\+time} & Time handler. \\
+\hline
+\end{DoxyParams}

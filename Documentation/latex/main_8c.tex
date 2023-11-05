@@ -1,0 +1,249 @@
+\hypertarget{main_8c}{}\doxysection{Core/\+Src/main.c File Reference}
+\label{main_8c}\index{Core/Src/main.c@{Core/Src/main.c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}keypad.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lcd.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_keypad___handle_type_def}{Keypad\+\_\+\+Handle\+Type\+Def}} \mbox{\hyperlink{main_8c_a266264a1e5226cd56797fd975d4f063b}{keypad\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise the keypad handler by setting which G\+P\+IO pins and ports are used to work with the Keypad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a1ea5b39a0bb0f230f5c68f92988e00ef}{number\+\_\+to\+\_\+string}} (uint8\+\_\+t num, char $\ast$buf)
+\begin{DoxyCompactList}\small\item\em This function converts an integer value into its corresponding character. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{main_8c_ace7271c68496fcce586ad9a0a3591bce}{time\+\_\+to\+\_\+string}} (\mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$rtc\+\_\+time)
+\begin{DoxyCompactList}\small\item\em This function converts the rtc\+\_\+time struct into a string with the format hh\+:mm\+:ss. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{main_8c_a2175e59d8ef4ed9cdd36dcda6ea7808b}{date\+\_\+to\+\_\+string}} (\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$rtc\+\_\+date)
+\begin{DoxyCompactList}\small\item\em This function converts the rtc\+\_\+date struct into a string with the format dd/mm/yyyy. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a8ab3b1c2d240d97cb2f579b4d71a372f}{num\+\_\+returned}} ()
+\begin{DoxyCompactList}\small\item\em This function retrieves the keypad number pressed and prints it on the lcd. This function can distinguishes between one decimal number and two decimal numbers. The only way to accept a number is by pressing the \char`\"{}\+D\char`\"{} key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a4fb0c799fd553d04c5bd338628ee8187}{select\+\_\+day}} (\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$current\+\_\+date)
+\begin{DoxyCompactList}\small\item\em This function let the user choose the day among the list of the week. \char`\"{}\+D\char`\"{} is to select the day and \char`\"{}\+C\char`\"{} is to continuous to the next day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_abcec698aee88d4ca0c856afb9ee53b6a}{config\+\_\+menu}} ()
+\begin{DoxyCompactList}\small\item\em This function sets the time and date parameters. The code will keep executing until the returned value is in its own boundaries. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em Callback function triggered after T\+I\+M\+E\+R6 issues an interrupt. It will get the date and time every second and print them on the L\+CD screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}{H\+A\+L\+\_\+\+G\+P\+I\+O\+\_\+\+E\+X\+T\+I\+\_\+\+Callback}} (uint16\+\_\+t G\+P\+I\+O\+\_\+\+Pin)
+\begin{DoxyCompactList}\small\item\em Callback function triggered after the user press the \char`\"{}\+User button\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Main program body 
+
+\begin{DoxyAuthor}{Author}
+\+: Rafael Hernández Marrero (\href{mailto:rafaelh96@gmail.com}{\texttt{ rafaelh96@gmail.\+com}})
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2023 S\+T\+Microelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the L\+I\+C\+E\+N\+SE file in the root directory of this software component. If no L\+I\+C\+E\+N\+SE file comes with this software, it is provided A\+S-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_abcec698aee88d4ca0c856afb9ee53b6a}\label{main_8c_abcec698aee88d4ca0c856afb9ee53b6a}} 
+\index{main.c@{main.c}!config\_menu@{config\_menu}}
+\index{config\_menu@{config\_menu}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{config\_menu()}{config\_menu()}}
+{\footnotesize\ttfamily void config\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function sets the time and date parameters. The code will keep executing until the returned value is in its own boundaries. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a2175e59d8ef4ed9cdd36dcda6ea7808b}\label{main_8c_a2175e59d8ef4ed9cdd36dcda6ea7808b}} 
+\index{main.c@{main.c}!date\_to\_string@{date\_to\_string}}
+\index{date\_to\_string@{date\_to\_string}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{date\_to\_string()}{date\_to\_string()}}
+{\footnotesize\ttfamily char $\ast$ date\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$}]{rtc\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+This function converts the rtc\+\_\+date struct into a string with the format dd/mm/yyyy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtc\+\_\+date} & Date handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a1730ffe1e560465665eb47d9264826f9}\label{main_8c_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}\label{main_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}} 
+\index{main.c@{main.c}!HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}}
+\index{HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_GPIO\_EXTI\_Callback()}{HAL\_GPIO\_EXTI\_Callback()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+G\+P\+I\+O\+\_\+\+E\+X\+T\+I\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{G\+P\+I\+O\+\_\+\+Pin }\end{DoxyParamCaption})}
+
+
+
+Callback function triggered after the user press the \char`\"{}\+User button\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em G\+P\+I\+O\+\_\+\+Pin} & Specifies the pins connected E\+X\+TI line. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}} 
+\index{main.c@{main.c}!HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}}
+\index{HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_PeriodElapsedCallback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+Callback function triggered after T\+I\+M\+E\+R6 issues an interrupt. It will get the date and time every second and print them on the L\+CD screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & Timer handler \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a266264a1e5226cd56797fd975d4f063b}\label{main_8c_a266264a1e5226cd56797fd975d4f063b}} 
+\index{main.c@{main.c}!keypad\_init@{keypad\_init}}
+\index{keypad\_init@{keypad\_init}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{keypad\_init()}{keypad\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_keypad___handle_type_def}{Keypad\+\_\+\+Handle\+Type\+Def}} keypad\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialise the keypad handler by setting which G\+P\+IO pins and ports are used to work with the Keypad. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_keypad___handle_type_def}{Keypad\+\_\+\+Handle\+Type\+Def}} Keypad handler. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a8ab3b1c2d240d97cb2f579b4d71a372f}\label{main_8c_a8ab3b1c2d240d97cb2f579b4d71a372f}} 
+\index{main.c@{main.c}!num\_returned@{num\_returned}}
+\index{num\_returned@{num\_returned}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{num\_returned()}{num\_returned()}}
+{\footnotesize\ttfamily uint8\+\_\+t num\+\_\+returned (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function retrieves the keypad number pressed and prints it on the lcd. This function can distinguishes between one decimal number and two decimal numbers. The only way to accept a number is by pressing the \char`\"{}\+D\char`\"{} key. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a1ea5b39a0bb0f230f5c68f92988e00ef}\label{main_8c_a1ea5b39a0bb0f230f5c68f92988e00ef}} 
+\index{main.c@{main.c}!number\_to\_string@{number\_to\_string}}
+\index{number\_to\_string@{number\_to\_string}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{number\_to\_string()}{number\_to\_string()}}
+{\footnotesize\ttfamily void number\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num,  }\item[{char $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+This function converts an integer value into its corresponding character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Integer value. \\
+\hline
+{\em buf} & Character. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a4fb0c799fd553d04c5bd338628ee8187}\label{main_8c_a4fb0c799fd553d04c5bd338628ee8187}} 
+\index{main.c@{main.c}!select\_day@{select\_day}}
+\index{select\_day@{select\_day}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{select\_day()}{select\_day()}}
+{\footnotesize\ttfamily void select\+\_\+day (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__date__t}{R\+T\+C\+\_\+date\+\_\+t}} $\ast$}]{current\+\_\+date }\end{DoxyParamCaption})}
+
+
+
+This function let the user choose the day among the list of the week. \char`\"{}\+D\char`\"{} is to select the day and \char`\"{}\+C\char`\"{} is to continuous to the next day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+date} & Date handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the R\+CC Oscillators according to the specified parameters in the R\+C\+C\+\_\+\+Osc\+Init\+Type\+Def structure.
+
+Initializes the C\+PU, A\+HB and A\+PB buses clocks\mbox{\Hypertarget{main_8c_ace7271c68496fcce586ad9a0a3591bce}\label{main_8c_ace7271c68496fcce586ad9a0a3591bce}} 
+\index{main.c@{main.c}!time\_to\_string@{time\_to\_string}}
+\index{time\_to\_string@{time\_to\_string}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{time\_to\_string()}{time\_to\_string()}}
+{\footnotesize\ttfamily char $\ast$ time\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_t_c__time__t}{R\+T\+C\+\_\+time\+\_\+t}} $\ast$}]{rtc\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+This function converts the rtc\+\_\+time struct into a string with the format hh\+:mm\+:ss. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtc\+\_\+time} & Time handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}

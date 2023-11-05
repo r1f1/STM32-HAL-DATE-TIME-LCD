@@ -54,6 +54,12 @@
 
 //***************************************** RTC types *****************************************//
 
+/**
+ * @struct RTC_date_t rtc.h "rtc.h"
+ * @brief Date struct members.
+ *
+ */
+
 typedef struct
 {
 	uint8_t month;
@@ -62,7 +68,11 @@ typedef struct
 	uint8_t day;
 }RTC_date_t;
 
-
+/**
+ * @struct RTC_time_t rtc.h "rtc.h"
+ * @brief Time struct members.
+ *
+ */
 typedef struct
 {
 	uint8_t seconds;
@@ -71,6 +81,11 @@ typedef struct
 	uint8_t time_format;
 }RTC_time_t;
 
+/**
+ * @struct RTC_HandleTypeDef rtc.h "rtc.h"
+ * @brief I2C handle
+ *
+ */
 typedef struct{
 
 	I2C_HandleTypeDef 	*I2C_Handle;

@@ -1,0 +1,31 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Overview}\label{md__r_e_a_d_m_e_autotoc_md1}
+The purpose of this project is to display the date and the time on the L\+CD screen which was previously introduced by the user. To achieve this goal it was use a general 4x4 matrix keypad to introduce the data; the R\+TC D\+S1307 to set the date and time via the I2C bus; and to display the different parameters it was use the H\+D44780 controller along with the P\+C\+F8574 I2C I/O expander.
+
+Before begin with this project it was necessary to develop the drivers for each component, which you can find them in my other repositories.
+
+In this application every time the M\+CU is powered on, the program will ask for the current date and time. Once this is done it will display the data on the L\+CD screen updating the time every second. It is also provided an extra button if at some point the user wants to change the values again.
+
+This project was tested on the \href{https://www.st.com/en/evaluation-tools/stm32f4discovery.html}{\texttt{ S\+T\+M32\+D\+I\+S\+C\+O\+V\+E\+RY}} board.
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{Documentation}\label{md__r_e_a_d_m_e_autotoc_md2}
+A brief documentation of the functions used in the application are shown below. For detailed instructions, refer to the doxygen compliant documentation within the {\ttfamily main.\+c} file.\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{Functions}\label{md__r_e_a_d_m_e_autotoc_md3}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description   }\\\cline{1-2}
+\endhead
+\PBS\centering {\ttfamily number\+\_\+to\+\_\+string}  &Convert an integer to a string, adding a 0 to integers smaller than 10   \\\cline{1-2}
+\PBS\centering {\ttfamily time\+\_\+to\+\_\+string}  &Set the time in this format {\ttfamily hh\+:mm\+:ss}   \\\cline{1-2}
+\PBS\centering {\ttfamily date\+\_\+to\+\_\+string}  &Set the date in this format\+: {\ttfamily dd/mm/yyyy}   \\\cline{1-2}
+\PBS\centering {\ttfamily num\+\_\+returned}  &Return the entered number via the keypad   \\\cline{1-2}
+\PBS\centering {\ttfamily select\+\_\+day}  &Let the user choose the day of the week   \\\cline{1-2}
+\PBS\centering {\ttfamily config\+\_\+menu}  &Let the user choose the time and date parameters, as long as they are correct   \\\cline{1-2}
+\PBS\centering {\ttfamily H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}  &Callback function triggered after the T\+I\+M\+ER issues an interrupt every second   \\\cline{1-2}
+\PBS\centering {\ttfamily H\+A\+L\+\_\+\+G\+P\+I\+O\+\_\+\+E\+X\+T\+I\+\_\+\+Callback}  &Callback function triggered after the user press the {\itshape User Button}   \\\cline{1-2}
+\PBS\centering {\ttfamily keypad\+\_\+init}  &Initialization of the keypad handler   \\\cline{1-2}
+\end{longtabu}

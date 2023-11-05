@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file     lcd.h
- * @author   Rafael Hern├índez Marrero (rafaelh96@gmail.com)
+ * @author   Rafael Hernández Marrero (rafaelh96@gmail.com)
  * @version  V1.0
  * @date     02/11/2023 20:00:00
  * @brief	 Functions declarations available to the user for working with the HD44780 LCD along with the I/O expander for I2C bus PCF8574
@@ -47,6 +47,11 @@
 
 //***************************************** LCD types *****************************************//
 
+/**
+ * @struct LCD_HandleTypeDef lcd.h "lcd.h"
+ * @brief I2C handle
+ *
+ */
 typedef struct{
 
 	I2C_HandleTypeDef 	*I2C_Handle;

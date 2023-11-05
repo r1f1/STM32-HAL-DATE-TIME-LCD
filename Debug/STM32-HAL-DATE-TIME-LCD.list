@@ -41,9 +41,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_macro  000225bf  00000000  00000000  000315af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_line   00010c07  00000000  00000000  00053b6e  2**0
+ 19 .debug_line   00010c05  00000000  00000000  00053b6e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_str    000cd0d3  00000000  00000000  00064775  2**0
+ 20 .debug_str    000cd0d3  00000000  00000000  00064773  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  21 .debug_frame  00004368  00000000  00000000  00131848  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -414,10 +414,10 @@ Disassembly of section .text:
  800056a:	bf00      	nop
 
 0800056c <keypad_create>:
- *
- * @return 	   Keypad_HandleTypeDef		- Keypad handler.
+ * @param pin_columns Array with the GPIO pins assigned to the COLUMNS.
+ * @param port_columns Array with the GPIO ports assigned to the COLUMNS.
+ * @return Keypad_HandleTypeDef Keypad handler.
  */
-
 
 Keypad_HandleTypeDef keypad_create(Keypad_PinDef pin_rows[], Keypad_PortDef port_rows[], Keypad_PinDef pin_columns[], Keypad_PortDef port_columns[]){
  800056c:	b4b0      	push	{r4, r5, r7}
@@ -509,10 +509,10 @@ Keypad_HandleTypeDef keypad_create(Keypad_PinDef pin_rows[], Keypad_PortDef port
  8000622:	4770      	bx	lr
 
 08000624 <key_selected>:
- *
- * @return 	   int32_t		- Returns 1 if a button is pressed and 0 if not.
+ * @param keypad Keypad handler.
+ * @param key Store the matching value from the matrix.
+ * @return int32_t Returns 1 if a button is pressed and 0 if not.
  */
-
 
 int32_t key_selected(Keypad_HandleTypeDef *keypad, uint8_t *key){
  8000624:	b580      	push	{r7, lr}
@@ -634,8 +634,8 @@ int32_t key_selected(Keypad_HandleTypeDef *keypad, uint8_t *key){
  80006e4:	08005254 	.word	0x08005254
 
 080006e8 <lcd_send_command>:
- *
- * @param[in]  cmd						- Command.
+ * @param lcd LCD handler.
+ * @param cmd Command. Available in the "LCD commands" section on the lcd.h file.
  */
 
 void lcd_send_command(LCD_HandleTypeDef *lcd, uint8_t cmd)
@@ -671,8 +671,8 @@ void lcd_send_command(LCD_HandleTypeDef *lcd, uint8_t cmd)
  800071c:	bd80      	pop	{r7, pc}
 
 0800071e <lcd_print_char>:
- *
- * @param[in]  data						- Character to send.
+ * @param lcd LCD handler.
+ * @param data Character to send.
  */
 
 void lcd_print_char(LCD_HandleTypeDef *lcd, uint8_t data)
@@ -708,8 +708,8 @@ void lcd_print_char(LCD_HandleTypeDef *lcd, uint8_t data)
  8000752:	bd80      	pop	{r7, pc}
 
 08000754 <lcd_print_string>:
- *
- * @param[in]  message					- String to send.
+ * @param lcd LCD handler.
+ * @param message String to send.
  */
 
 void lcd_print_string(LCD_HandleTypeDef *lcd, char *message)
@@ -745,9 +745,9 @@ void lcd_print_string(LCD_HandleTypeDef *lcd, char *message)
  800077e:	bd80      	pop	{r7, pc}
 
 08000780 <lcd_write>:
- * @param[in]  nibble					- 4-bits to send.
- *
- * @param[in]  Rs						- Rs pin.
+ * @param lcd LCD handler.
+ * @param nibble 4-bits to send.
+ * @param Rs  Rs pin.
  */
 
 void lcd_write(LCD_HandleTypeDef *lcd, uint8_t nibble, uint8_t Rs){
@@ -821,9 +821,9 @@ void lcd_write(LCD_HandleTypeDef *lcd, uint8_t nibble, uint8_t Rs){
  80007fc:	bd80      	pop	{r7, pc}
 
 080007fe <lcd_init_I2C>:
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  I2C_Handle				- I2C handler.
+ * @brief This function initialise the LCD handler with the I2C related data.
+ * @param lcd LCD handler.
+ * @param I2C_Handle I2C handler.
  */
 
 void lcd_init_I2C(LCD_HandleTypeDef *lcd, I2C_HandleTypeDef *I2C_Handle){
@@ -852,8 +852,8 @@ void lcd_init_I2C(LCD_HandleTypeDef *lcd, I2C_HandleTypeDef *I2C_Handle){
  8000820:	bd80      	pop	{r7, pc}
 
 08000822 <lcd_init>:
- *
- * @param[in]  lcd						- LCD handler.
+ * @brief This function initialise the LCD screen following the steps recommended by the manufacturer.
+ * @param lcd LCD handler.
  */
 
 void lcd_init(LCD_HandleTypeDef *lcd)
@@ -950,8 +950,8 @@ void lcd_init(LCD_HandleTypeDef *lcd)
  80008aa:	bd80      	pop	{r7, pc}
 
 080008ac <lcd_display_clear>:
- *
- * @param[in]  lcd						- LCD handler.
+ * @brief This function clear the display.
+ * @param lcd LCD handler.
  */
 
 void lcd_display_clear(LCD_HandleTypeDef *lcd)
@@ -976,10 +976,10 @@ void lcd_display_clear(LCD_HandleTypeDef *lcd)
  80008c8:	bd80      	pop	{r7, pc}
 
 080008ca <lcd_display_return_home>:
- * @param[in]  lcd						- LCD handler.
+ * @fn void lcd_display_return_home(LCD_HandleTypeDef*)
+ * @brief This function returns the cursor to the initial position.
+ * @param lcd LCD handler.
  */
-
-
 void lcd_display_return_home(LCD_HandleTypeDef *lcd)
 {
  80008ca:	b580      	push	{r7, lr}
@@ -1002,8 +1002,8 @@ void lcd_display_return_home(LCD_HandleTypeDef *lcd)
  80008e6:	bd80      	pop	{r7, pc}
 
 080008e8 <lcd_set_cursor>:
- *
- * @param[in]  column					- Column Number (1 to 16).  Assuming a 2x16 characters display.
+ * @param row Row Number (1 to 2).
+ * @param column Column Number (1 to 16).  Assuming a 16x2 characters display.
  */
 
 void lcd_set_cursor(LCD_HandleTypeDef *lcd, uint8_t row, uint8_t column)
@@ -1061,8 +1061,8 @@ void lcd_set_cursor(LCD_HandleTypeDef *lcd, uint8_t row, uint8_t column)
  8000938:	bd80      	pop	{r7, pc}
 
 0800093a <udelay>:
- *
- * @param[in]  cnt						- Count in microseconds.
+ * @brief This function create a delay in microseconds.
+ * @param cnt Count in microseconds.
  */
 
 static void udelay(uint32_t cnt)
@@ -1091,8 +1091,8 @@ static void udelay(uint32_t cnt)
  8000962:	4770      	bx	lr
 
 08000964 <rtc_init>:
- *
- * @returns	   uint8_t					- If the clock halt (CH) bit returns 1 the module is disable, if it returns 0 is enable.
+ * @param I2C_Handle I2C handler.
+ * @return uint8_t If the clock halt (CH) bit returns 1 the module is disable, if it returns 0 is enable.
  */
 
 uint8_t rtc_init(RTC_HandleTypeDef *rtc, I2C_HandleTypeDef *I2C_Handle)
@@ -1139,10 +1139,10 @@ uint8_t rtc_init(RTC_HandleTypeDef *rtc, I2C_HandleTypeDef *I2C_Handle)
  800099c:	bd80      	pop	{r7, pc}
 
 0800099e <rtc_set_current_time>:
- *
- * @param[in]  rtc_time					- Time handler.
+ * @brief Each parameter have their own address and they are set in BCD format.
+ * @param rtc RTC handler.
+ * @param rtc_time Time handler.
  */
-
 void rtc_set_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 {
  800099e:	b580      	push	{r7, lr}
@@ -1237,8 +1237,8 @@ void rtc_set_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
  8000a3a:	bd80      	pop	{r7, pc}
 
 08000a3c <rtc_set_current_date>:
- *
- * @param[in]  rtc_date					- Date handler.
+ * @param rtc RTC handler.
+ * @param rtc_date Date handler.
  */
 
 void rtc_set_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
@@ -1300,10 +1300,10 @@ void rtc_set_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
  8000aa4:	bd80      	pop	{r7, pc}
 
 08000aa6 <rtc_get_current_time>:
- *
- * @param[in]  rtc_time					- Time handler.
+ * @brief The returned values are set back to binary format.
+ * @param rtc RTC handler.
+ * @param rtc_time Time handler.
  */
-
 void rtc_get_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
 {
  8000aa6:	b580      	push	{r7, lr}
@@ -1398,10 +1398,10 @@ void rtc_get_current_time(RTC_HandleTypeDef *rtc, RTC_time_t *rtc_time)
  8000b42:	bd80      	pop	{r7, pc}
 
 08000b44 <rtc_get_current_date>:
- *
- * @param[in]  rtc_date					- Date handler.
+ * @brief The returned values are set back to binary format.
+ * @param rtc RTC handler.
+ * @param rtc_date Date handler.
  */
-
 void rtc_get_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
 {
  8000b44:	b580      	push	{r7, lr}
@@ -1461,10 +1461,10 @@ void rtc_get_current_date(RTC_HandleTypeDef *rtc, RTC_date_t *rtc_date)
  8000bb4:	bd80      	pop	{r7, pc}
 
 08000bb6 <rtc_write>:
- *
- * @param[in]  reg_addr					- Address for the Time or Date handler values.
+ * @param rtc RTC handler.
+ * @param value Any value within the Time or Date handler.
+ * @param reg_addr Address for the Time or Date handler values.
  */
-
 static void rtc_write(RTC_HandleTypeDef *rtc, uint8_t value, uint8_t reg_addr)
 {
  8000bb6:	b580      	push	{r7, lr}
@@ -1500,10 +1500,10 @@ static void rtc_write(RTC_HandleTypeDef *rtc, uint8_t value, uint8_t reg_addr)
  8000bec:	bd80      	pop	{r7, pc}
 
 08000bee <rtc_read>:
- *
- * @return     uint8_t					- Data returned after sending the corresponding address.
+ * @param rtc RTC handler.
+ * @param reg_addr Address for the Time or Date handler values.
+ * @return uint8_t Data returned after sending the corresponding address.
  */
-
 static uint8_t rtc_read(RTC_HandleTypeDef *rtc, uint8_t reg_addr)
 {
  8000bee:	b580      	push	{r7, lr}
@@ -1546,8 +1546,8 @@ static uint8_t rtc_read(RTC_HandleTypeDef *rtc, uint8_t reg_addr)
 	...
 
 08000c34 <binary_to_bcd>:
- *
- * @return     uint8_t					- Data returned in BCD format.
+ * @param value Value in binary format.
+ * @return uint8_t Data returned in BCD format.
  */
 
 static uint8_t binary_to_bcd(uint8_t value)
@@ -1606,10 +1606,10 @@ static uint8_t binary_to_bcd(uint8_t value)
  8000c88:	cccccccd 	.word	0xcccccccd
 
 08000c8c <bcd_to_binary>:
- *
- * @return     uint8_t					- Data returned in binary format.
+ * @brief This function sets back the value to binary format.
+ * @param value Value in BCD format.
+ * @return uint8_t Data returned in binary format.
  */
-
 static uint8_t bcd_to_binary(uint8_t value)
 {
  8000c8c:	b480      	push	{r7}
@@ -1645,9 +1645,9 @@ static uint8_t bcd_to_binary(uint8_t value)
 	...
 
 08000cc4 <number_to_string>:
- * @param[in]  num						- Integer value.
- *
- * @param[in]  buf						- Character.
+ * @brief This function converts an integer value into its corresponding character.
+ * @param num Integer value.
+ * @param buf Character.
  */
 
 void number_to_string(uint8_t num, char *buf){
@@ -1721,9 +1721,9 @@ void number_to_string(uint8_t num, char *buf){
  8000d38:	cccccccd 	.word	0xcccccccd
 
 08000d3c <time_to_string>:
- * @param[in]  rtc_time					- Time handler.
- *
- * @return     char*					- Returned string in this format: hh:mm:ss.
+ * @brief This function converts the rtc_time struct into a string with the format hh:mm:ss.
+ * @param rtc_time Time handler.
+ * @return char*
  */
 
 char *time_to_string(RTC_time_t *rtc_time){
@@ -1777,11 +1777,11 @@ char *time_to_string(RTC_time_t *rtc_time){
  8000d8c:	200001ba 	.word	0x200001ba
 
 08000d90 <date_to_string>:
- *
- * @return     char*					- Returned string in this format: dd/mm/20yy.
+ * @fn char* date_to_string(RTC_date_t*)
+ * @brief This function converts the rtc_date struct into a string with the format dd/mm/yyyy.
+ * @param rtc_date Date handler.
+ * @return char*
  */
-
-//
 char *date_to_string(RTC_date_t *rtc_date){
  8000d90:	b580      	push	{r7, lr}
  8000d92:	b082      	sub	sp, #8
@@ -1840,9 +1840,9 @@ char *date_to_string(RTC_date_t *rtc_date){
  8000dec:	200001c8 	.word	0x200001c8
 
 08000df0 <num_returned>:
- * 										- The only way to accept a number is by pressing the "D" key.
- *
- * @return    uint8_t					- Returned the final number.
+ * This function can distinguishes between one decimal number and two decimal numbers.
+ * The only way to accept a number is by pressing the "D" key.
+ * @return uint8_t
  */
 
 uint8_t num_returned(){
@@ -1960,9 +1960,9 @@ uint8_t num_returned(){
  8000ea8:	08005130 	.word	0x08005130
 
 08000eac <select_day>:
- * 										- "D" is to select the day and "C" is to continuous to the next day.
- *
- * @param[in]  current_date				- Date handler.
+ * @brief This function let the user choose the day among the list of the week.
+ * "D" is to select the day and "C" is to continuous to the next day.
+ * @param current_date Date handler.
  */
 
 void select_day(RTC_date_t *current_date){
@@ -2078,11 +2078,11 @@ void select_day(RTC_date_t *current_date){
  8000f70:	20000174 	.word	0x20000174
 
 08000f74 <config_menu>:
- *
- * @brief								- This function sets the time and date parameters.
- * 										- The code will keep executing until the returned value is in its own boundaries.
+ * @fn void config_menu()
+ * @brief This function sets the time and date parameters.
+ * The code will keep executing until the returned value is in its own boundaries.
+ * @retval none
  */
-
 void config_menu(){
  8000f74:	b580      	push	{r7, lr}
  8000f76:	b084      	sub	sp, #16
@@ -2524,9 +2524,9 @@ void config_menu(){
  800127c:	200001ac 	.word	0x200001ac
 
 08001280 <HAL_TIM_PeriodElapsedCallback>:
- * @brief								- Callback function after TIMER6 issued an interrupt.
- *
- * @param[in]  htim						- Timer handler.
+ * It will get the date and time every second and print them on the LCD screen.
+ * @param htim Timer handler
+ * @retval none
  */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
@@ -3247,8 +3247,10 @@ static void MX_GPIO_Init(void)
  80016e4:	40020000 	.word	0x40020000
 
 080016e8 <HAL_GPIO_EXTI_Callback>:
-
-/* USER CODE BEGIN 4 */
+ * @fn void HAL_GPIO_EXTI_Callback(uint16_t)
+ * @brief Callback function triggered after the user press the "User button".
+ * @param GPIO_Pin Specifies the pins connected EXTI line.
+ */
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
  80016e8:	b580      	push	{r7, lr}
@@ -3266,6 +3268,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	...
 
 08001700 <keypad_init>:
+ * @fn Keypad_HandleTypeDef keypad_init(void)
+ * @brief Initialise the keypad handler by setting which GPIO pins and ports are used to work with the Keypad.
+ * @return Keypad_HandleTypeDef Keypad handler.
+ */
 
 Keypad_HandleTypeDef keypad_init(void){
  8001700:	b5b0      	push	{r4, r5, r7, lr}

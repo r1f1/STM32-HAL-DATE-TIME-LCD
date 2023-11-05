@@ -1,0 +1,177 @@
+\hypertarget{lcd_8c}{}\doxysection{Bsp/lcd.c File Reference}
+\label{lcd_8c}\index{Bsp/lcd.c@{Bsp/lcd.c}}
+
+
+Functions definitions available to the user for working with the H\+D44780 L\+CD along with the I/O expander for I2C bus P\+C\+F8574.  
+
+
+{\ttfamily \#include \char`\"{}lcd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f4xx\+\_\+hal.\+H\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lcd_8c_a6acfa91233fa4118665cb71bb048a1d2}{lcd\+\_\+send\+\_\+command}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd, uint8\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_a87d1aa544fc1228911998ff9a5730f7c}{lcd\+\_\+print\+\_\+char}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_a0d5740f2f4c6d612e25c17580f295641}{lcd\+\_\+print\+\_\+string}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd, char $\ast$message)
+\begin{DoxyCompactList}\small\item\em This function iterates the message character by character. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_ac6ed01e61a06e18f2737c273c8179d11}{lcd\+\_\+init\+\_\+\+I2C}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd, I2\+C\+\_\+\+Handle\+Type\+Def $\ast$I2\+C\+\_\+\+Handle)
+\begin{DoxyCompactList}\small\item\em This function initialise the L\+CD handler with the I2C related data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_a69c636e44bb71d99f23527e92f7573ca}{lcd\+\_\+init}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd)
+\begin{DoxyCompactList}\small\item\em This function initialise the L\+CD screen following the steps recommended by the manufacturer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_a9ca65eca22f08888b43a1c070f991bab}{lcd\+\_\+display\+\_\+clear}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd)
+\begin{DoxyCompactList}\small\item\em This function clear the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_ac26eef939cec7f9a8099c92c3f811a96}{lcd\+\_\+display\+\_\+return\+\_\+home}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd)
+\begin{DoxyCompactList}\small\item\em This function returns the cursor to the initial position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd_8c_a928b772c6ed29f77252cc39f42c25baa}{lcd\+\_\+set\+\_\+cursor}} (\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$lcd, uint8\+\_\+t row, uint8\+\_\+t column)
+\begin{DoxyCompactList}\small\item\em This function set cursor to a specified location given by row and column information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions definitions available to the user for working with the H\+D44780 L\+CD along with the I/O expander for I2C bus P\+C\+F8574. 
+
+\begin{DoxyAuthor}{Author}
+Rafael Hernández Marrero (\href{mailto:rafaelh96@gmail.com}{\texttt{ rafaelh96@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02/11/2023 20\+:00\+:00 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lcd_8c_a9ca65eca22f08888b43a1c070f991bab}\label{lcd_8c_a9ca65eca22f08888b43a1c070f991bab}} 
+\index{lcd.c@{lcd.c}!lcd\_display\_clear@{lcd\_display\_clear}}
+\index{lcd\_display\_clear@{lcd\_display\_clear}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_display\_clear()}{lcd\_display\_clear()}}
+{\footnotesize\ttfamily void lcd\+\_\+display\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd }\end{DoxyParamCaption})}
+
+
+
+This function clear the display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_ac26eef939cec7f9a8099c92c3f811a96}\label{lcd_8c_ac26eef939cec7f9a8099c92c3f811a96}} 
+\index{lcd.c@{lcd.c}!lcd\_display\_return\_home@{lcd\_display\_return\_home}}
+\index{lcd\_display\_return\_home@{lcd\_display\_return\_home}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_display\_return\_home()}{lcd\_display\_return\_home()}}
+{\footnotesize\ttfamily void lcd\+\_\+display\+\_\+return\+\_\+home (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd }\end{DoxyParamCaption})}
+
+
+
+This function returns the cursor to the initial position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_a69c636e44bb71d99f23527e92f7573ca}\label{lcd_8c_a69c636e44bb71d99f23527e92f7573ca}} 
+\index{lcd.c@{lcd.c}!lcd\_init@{lcd\_init}}
+\index{lcd\_init@{lcd\_init}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_init()}{lcd\_init()}}
+{\footnotesize\ttfamily void lcd\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd }\end{DoxyParamCaption})}
+
+
+
+This function initialise the L\+CD screen following the steps recommended by the manufacturer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_ac6ed01e61a06e18f2737c273c8179d11}\label{lcd_8c_ac6ed01e61a06e18f2737c273c8179d11}} 
+\index{lcd.c@{lcd.c}!lcd\_init\_I2C@{lcd\_init\_I2C}}
+\index{lcd\_init\_I2C@{lcd\_init\_I2C}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_init\_I2C()}{lcd\_init\_I2C()}}
+{\footnotesize\ttfamily void lcd\+\_\+init\+\_\+\+I2C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd,  }\item[{I2\+C\+\_\+\+Handle\+Type\+Def $\ast$}]{I2\+C\+\_\+\+Handle }\end{DoxyParamCaption})}
+
+
+
+This function initialise the L\+CD handler with the I2C related data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+{\em I2\+C\+\_\+\+Handle} & I2C handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_a87d1aa544fc1228911998ff9a5730f7c}\label{lcd_8c_a87d1aa544fc1228911998ff9a5730f7c}} 
+\index{lcd.c@{lcd.c}!lcd\_print\_char@{lcd\_print\_char}}
+\index{lcd\_print\_char@{lcd\_print\_char}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_print\_char()}{lcd\_print\_char()}}
+{\footnotesize\ttfamily void lcd\+\_\+print\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble. 
+
+Rs pin is set to 1. 
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+{\em data} & Character to send. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_a0d5740f2f4c6d612e25c17580f295641}\label{lcd_8c_a0d5740f2f4c6d612e25c17580f295641}} 
+\index{lcd.c@{lcd.c}!lcd\_print\_string@{lcd\_print\_string}}
+\index{lcd\_print\_string@{lcd\_print\_string}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_print\_string()}{lcd\_print\_string()}}
+{\footnotesize\ttfamily void lcd\+\_\+print\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd,  }\item[{char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+This function iterates the message character by character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+{\em message} & String to send. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_a6acfa91233fa4118665cb71bb048a1d2}\label{lcd_8c_a6acfa91233fa4118665cb71bb048a1d2}} 
+\index{lcd.c@{lcd.c}!lcd\_send\_command@{lcd\_send\_command}}
+\index{lcd\_send\_command@{lcd\_send\_command}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_send\_command()}{lcd\_send\_command()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd,  }\item[{uint8\+\_\+t}]{cmd }\end{DoxyParamCaption})}
+
+
+
+This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble. 
+
+Rs pin is set to 0. 
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+{\em cmd} & Command. Available in the \char`\"{}\+L\+C\+D commands\char`\"{} section on the \mbox{\hyperlink{lcd_8h}{lcd.\+h}} file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lcd_8c_a928b772c6ed29f77252cc39f42c25baa}\label{lcd_8c_a928b772c6ed29f77252cc39f42c25baa}} 
+\index{lcd.c@{lcd.c}!lcd\_set\_cursor@{lcd\_set\_cursor}}
+\index{lcd\_set\_cursor@{lcd\_set\_cursor}!lcd.c@{lcd.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_set\_cursor()}{lcd\_set\_cursor()}}
+{\footnotesize\ttfamily void lcd\+\_\+set\+\_\+cursor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_c_d___handle_type_def}{L\+C\+D\+\_\+\+Handle\+Type\+Def}} $\ast$}]{lcd,  }\item[{uint8\+\_\+t}]{row,  }\item[{uint8\+\_\+t}]{column }\end{DoxyParamCaption})}
+
+
+
+This function set cursor to a specified location given by row and column information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lcd} & L\+CD handler. \\
+\hline
+{\em row} & Row Number (1 to 2). \\
+\hline
+{\em column} & Column Number (1 to 16). Assuming a 16x2 characters display. \\
+\hline
+\end{DoxyParams}

@@ -22,15 +22,12 @@ static void lcd_write(LCD_HandleTypeDef *, uint8_t, uint8_t);
 
 //************************************** Function definitions **************************************//
 
-/*************************************************************************************
- * @fn									- lcd_send_command
- *
- * @brief								- This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble.
- *										- Rs pin is set to 0.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  cmd						- Command.
+/**
+ * @fn void lcd_send_command(LCD_HandleTypeDef*, uint8_t)
+ * @brief This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble.
+ * @brief Rs pin is set to 0.
+ * @param lcd LCD handler.
+ * @param cmd Command. Available in the "LCD commands" section on the lcd.h file.
  */
 
 void lcd_send_command(LCD_HandleTypeDef *lcd, uint8_t cmd)
@@ -41,15 +38,12 @@ void lcd_send_command(LCD_HandleTypeDef *lcd, uint8_t cmd)
 
 }
 
-/*************************************************************************************
- * @fn									- lcd_print_char
- *
- * @brief								- This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble.
- *										- Rs pin is set to 1.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  data						- Character to send.
+/**
+ * @fn void lcd_print_char(LCD_HandleTypeDef*, uint8_t)
+ * @brief This function splits the command value into two nibbles and sends the higher nibble first, followed by the lower nibble.
+ * @brief Rs pin is set to 1.
+ * @param lcd LCD handler.
+ * @param data Character to send.
  */
 
 void lcd_print_char(LCD_HandleTypeDef *lcd, uint8_t data)
@@ -60,14 +54,11 @@ void lcd_print_char(LCD_HandleTypeDef *lcd, uint8_t data)
 
 }
 
-/*************************************************************************************
- * @fn									- lcd_print_string
- *
- * @brief								- This function iterates the message character by character.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  message					- String to send.
+/**
+ * @fn void lcd_print_string(LCD_HandleTypeDef*, char*)
+ * @brief This function iterates the message character by character.
+ * @param lcd LCD handler.
+ * @param message String to send.
  */
 
 void lcd_print_string(LCD_HandleTypeDef *lcd, char *message)
@@ -81,16 +72,12 @@ void lcd_print_string(LCD_HandleTypeDef *lcd, char *message)
 
 }
 
-/*************************************************************************************
- * @fn									- lcd_write
- *
- * @brief								- This function sends the nibble to the LCD screen over I2C bus.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  nibble					- 4-bits to send.
- *
- * @param[in]  Rs						- Rs pin.
+/**
+ * @fn void lcd_write(LCD_HandleTypeDef*, uint8_t, uint8_t)
+ * @brief This function sends the nibble to the LCD screen over I2C bus.
+ * @param lcd LCD handler.
+ * @param nibble 4-bits to send.
+ * @param Rs  Rs pin.
  */
 
 void lcd_write(LCD_HandleTypeDef *lcd, uint8_t nibble, uint8_t Rs){
@@ -108,14 +95,11 @@ void lcd_write(LCD_HandleTypeDef *lcd, uint8_t nibble, uint8_t Rs){
 
 }
 
-/*************************************************************************************
- * @fn									- lcd_init_I2C
- *
- * @brief								- This function initialise the LCD handler with the I2C related data.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  I2C_Handle				- I2C handler.
+/**
+ * @fn void lcd_init_I2C(LCD_HandleTypeDef*, I2C_HandleTypeDef*)
+ * @brief This function initialise the LCD handler with the I2C related data.
+ * @param lcd LCD handler.
+ * @param I2C_Handle I2C handler.
  */
 
 void lcd_init_I2C(LCD_HandleTypeDef *lcd, I2C_HandleTypeDef *I2C_Handle){
@@ -126,12 +110,10 @@ void lcd_init_I2C(LCD_HandleTypeDef *lcd, I2C_HandleTypeDef *I2C_Handle){
 	lcd_init(lcd);
 }
 
-/*************************************************************************************
- * @fn									- lcd_init
- *
- * @brief								- This function initialise the LCD screen following the steps recommended by the manufacturer.
- *
- * @param[in]  lcd						- LCD handler.
+/**
+ * @fn void lcd_init(LCD_HandleTypeDef*)
+ * @brief This function initialise the LCD screen following the steps recommended by the manufacturer.
+ * @param lcd LCD handler.
  */
 
 void lcd_init(LCD_HandleTypeDef *lcd)
@@ -172,12 +154,10 @@ void lcd_init(LCD_HandleTypeDef *lcd)
 
 }
 
-/*************************************************************************************
- * @fn									- lcd_display_clear
- *
- * @brief								- This function clear the display.
- *
- * @param[in]  lcd						- LCD handler.
+/**
+ * @fn void lcd_display_clear(LCD_HandleTypeDef*)
+ * @brief This function clear the display.
+ * @param lcd LCD handler.
  */
 
 void lcd_display_clear(LCD_HandleTypeDef *lcd)
@@ -188,15 +168,12 @@ void lcd_display_clear(LCD_HandleTypeDef *lcd)
 	HAL_Delay(2);
 }
 
-/*************************************************************************************
- * @fn									- lcd_display_return_home
- *
- * @brief								- This function returns the cursor to the initial position.
- *
- * @param[in]  lcd						- LCD handler.
+
+/**
+ * @fn void lcd_display_return_home(LCD_HandleTypeDef*)
+ * @brief This function returns the cursor to the initial position.
+ * @param lcd LCD handler.
  */
-
-
 void lcd_display_return_home(LCD_HandleTypeDef *lcd)
 {
 
@@ -205,16 +182,13 @@ void lcd_display_return_home(LCD_HandleTypeDef *lcd)
 	HAL_Delay(2);
 }
 
-/*************************************************************************************
- * @fn									- lcd_set_cursor
- *
- * @brief								- This function set cursor to a specified location given by row and column information.
- *
- * @param[in]  lcd						- LCD handler.
- *
- * @param[in]  row						- Row Number (1 to 2)
- *
- * @param[in]  column					- Column Number (1 to 16).  Assuming a 2x16 characters display.
+
+/**
+ * @fn void lcd_set_cursor(LCD_HandleTypeDef*, uint8_t, uint8_t)
+ * @brief This function set cursor to a specified location given by row and column information.
+ * @param lcd LCD handler.
+ * @param row Row Number (1 to 2).
+ * @param column Column Number (1 to 16).  Assuming a 16x2 characters display.
  */
 
 void lcd_set_cursor(LCD_HandleTypeDef *lcd, uint8_t row, uint8_t column)
@@ -235,12 +209,10 @@ void lcd_set_cursor(LCD_HandleTypeDef *lcd, uint8_t row, uint8_t column)
   }
 }
 
-/*************************************************************************************
- * @fn									- udelay
- *
- * @brief								- This function create a delay in microseconds.
- *
- * @param[in]  cnt						- Count in microseconds.
+/**
+ * @fn void udelay(uint32_t)
+ * @brief This function create a delay in microseconds.
+ * @param cnt Count in microseconds.
  */
 
 static void udelay(uint32_t cnt)

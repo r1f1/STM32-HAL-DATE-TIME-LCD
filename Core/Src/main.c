@@ -1,6 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
+  * @author			: Rafael Hernández Marrero (rafaelh96@gmail.com)
   * @file           : main.c
   * @brief          : Main program body
   ******************************************************************************
@@ -72,15 +73,11 @@ Keypad_HandleTypeDef keypad_init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
-/*************************************************************************************
- * @fn									- number_to_string
- *
- * @brief								- This function converts an integer value into its corresponding character.
- *
- * @param[in]  num						- Integer value.
- *
- * @param[in]  buf						- Character.
+/**
+ * @fn void number_to_string(uint8_t, char*)
+ * @brief This function converts an integer value into its corresponding character.
+ * @param num Integer value.
+ * @param buf Character.
  */
 
 void number_to_string(uint8_t num, char *buf){
@@ -93,14 +90,11 @@ void number_to_string(uint8_t num, char *buf){
 	}
 }
 
-/*************************************************************************************
- * @fn									- time_to_string
- *
- * @brief								- This function converts the rtc_time struct into a string.
- *
- * @param[in]  rtc_time					- Time handler.
- *
- * @return     char*					- Returned string in this format: hh:mm:ss.
+/**
+ * @fn char* time_to_string(RTC_time_t*)
+ * @brief This function converts the rtc_time struct into a string with the format hh:mm:ss.
+ * @param rtc_time Time handler.
+ * @return char*
  */
 
 char *time_to_string(RTC_time_t *rtc_time){
@@ -117,17 +111,12 @@ char *time_to_string(RTC_time_t *rtc_time){
 	return buf;
 }
 
-/*************************************************************************************
- * @fn									- date_to_string
- *
- * @brief								- This function converts the rtc_date struct into a string.
- *
- * @param[in]  rtc_date					- Date handler.
- *
- * @return     char*					- Returned string in this format: dd/mm/yyyy.
+/**
+ * @fn char* date_to_string(RTC_date_t*)
+ * @brief This function converts the rtc_date struct into a string with the format dd/mm/yyyy.
+ * @param rtc_date Date handler.
+ * @return char*
  */
-
-//
 char *date_to_string(RTC_date_t *rtc_date){
 	static char buf[11];
 
@@ -143,14 +132,12 @@ char *date_to_string(RTC_date_t *rtc_date){
 	return buf;
 }
 
-/*************************************************************************************
- * @fn									- num_returned
- *
- * @brief								- This function retrieves the keypad number pressed and prints it on the lcd.
- * 										- This function can distinguishes between one decimal number and two decimal numbers.
- * 										- The only way to accept a number is by pressing the "D" key.
- *
- * @return    uint8_t					- Returned the final number.
+/**
+ * @fn uint8_t num_returned()
+ * @brief This function retrieves the keypad number pressed and prints it on the lcd.
+ * This function can distinguishes between one decimal number and two decimal numbers.
+ * The only way to accept a number is by pressing the "D" key.
+ * @return uint8_t
  */
 
 uint8_t num_returned(){
@@ -185,13 +172,11 @@ uint8_t num_returned(){
 
 }
 
-/*************************************************************************************
- * @fn									- select_day
- *
- * @brief								- This function let the user choose the day among the list of the week.
- * 										- "D" is to select the day and "C" is to continuous to the next day.
- *
- * @param[in]  current_date				- Date handler.
+/**
+ * @fn void select_day(RTC_date_t*)
+ * @brief This function let the user choose the day among the list of the week.
+ * "D" is to select the day and "C" is to continuous to the next day.
+ * @param current_date Date handler.
  */
 
 void select_day(RTC_date_t *current_date){
@@ -224,13 +209,13 @@ void select_day(RTC_date_t *current_date){
 
 }
 
-/*************************************************************************************
- * @fn									- config_menu
- *
- * @brief								- This function sets the time and date parameters.
- * 										- The code will keep executing until the returned value is in its own boundaries.
- */
 
+/**
+ * @fn void config_menu()
+ * @brief This function sets the time and date parameters.
+ * The code will keep executing until the returned value is in its own boundaries.
+ * @retval none
+ */
 void config_menu(){
 	RTC_time_t current_time;
 	RTC_date_t current_date;
@@ -376,13 +361,12 @@ void config_menu(){
 
 }
 
-/*************************************************************************************
- * @fn									- HAL_TIM_PeriodElapsedCallback
- *
- * @brief								- Callback function after TIMER6 issued an interrupt.
- * 										- It will get the date and time every second and print them on the LCD screen.
- *
- * @param[in]  htim						- Timer handler.
+/**
+ * @fn void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)
+ * @brief Callback function triggered after TIMER6 issues an interrupt.
+ * It will get the date and time every second and print them on the LCD screen.
+ * @param htim Timer handler
+ * @retval none
  */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
@@ -667,9 +651,21 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+/**
+ * @fn void HAL_GPIO_EXTI_Callback(uint16_t)
+ * @brief Callback function triggered after the user press the "User button".
+ * @param GPIO_Pin Specifies the pins connected EXTI line.
+ */
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	config_menu();
 }
+
+/**
+ * @fn Keypad_HandleTypeDef keypad_init(void)
+ * @brief Initialise the keypad handler by setting which GPIO pins and ports are used to work with the Keypad.
+ * @return Keypad_HandleTypeDef Keypad handler.
+ */
 
 Keypad_HandleTypeDef keypad_init(void){
 
